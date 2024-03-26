@@ -1,0 +1,33 @@
+{% extends 'admindashboard/base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'table.css' %}">
+ <div class="content">
+  <a href="{% url 'create_subject' %}" class="btn btn-primary">Add subject</a>
+     <table>
+       
+        <h2>subject list</h2>
+        <thead>
+        <tr>
+            <td>subject</td>
+            <td>year</td>
+            <td>Class</td>
+            <td>Action</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sub in subjects %}
+          <tr>
+            <td>{{sub.name}}</td>
+            <td>{{sub.session}}</td>
+            <td>{{sub.student_class}}</td>
+            <td>
+                <a href="{% url 'update_subject' sub.id %}" class="btn btn-primary">update</a>
+                <a href="{% url 'delete_subject' sub.id %}" class="btn btn-danger">delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+     </table>
+ </div>
+{% endblock%}

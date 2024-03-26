@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Your Site Title{% endblock %}</title>
+    <!-- Add your common styles, scripts, or links here -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+        }
+
+        #sidebar {
+            position: fixed;
+            width: 250px;
+            height: 100%;
+            background: #331e02;
+            padding-top: 20px;
+            color: #fff;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        #sidebar a {
+            text-decoration: none;
+            padding: 15px 20px;
+            font-size: 18px;
+            color: #fff;
+            display: block;
+            transition: 0.3s;
+            border-bottom: 1px solid #555;
+            text-transform: uppercase;
+
+        }
+
+        #sidebar a:hover {
+            background-color: #555;
+        }
+
+        #content {
+            margin-left: 250px;
+            padding: 20px;
+            flex: 1;
+        }
+
+        #content h2 {
+            color: #333;
+        }
+
+        #content p {
+            color: #555;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="sidebar">
+        <!-- Add common sidebar content here -->
+        <a href="{% url 'parent_dashboard' %}">Dashboard</a>
+        <a href="{% url 'student_result' %}">result</a>
+        <a href="{% url 'list_event' %}">events</a>
+        <a href="{% url 'student_assign' %}">Assignments</a>
+        <a href="{% url 'conferencing_create' %}">create conference</a>
+        <a href="{% url 'conferencing_list' %}">conferences</a>
+        <a href="{% url 'profile_list' %}">student profile</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>

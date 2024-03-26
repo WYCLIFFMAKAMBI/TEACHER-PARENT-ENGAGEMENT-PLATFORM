@@ -1,0 +1,61 @@
+<!-- studentprofile_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Profiles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background-color: #fff;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        li a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            text-decoration: underline;
+        }
+
+        .new-profile-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Profiles</h1>
+    <ul>
+    {% for studentprofile in studentprofiles %}
+        <li><a href="{% url 'profile_detail' studentprofile.pk %}">{{ studentprofile.student_name }}</a></li>
+    {% endfor %}
+    </ul>
+    {% if user.role == 'admin' %}
+    <a href="{% url 'profile_create' %}" class="new-profile-link">Create New Profile</a>
+    {% endif %}
+</body>
+</html>

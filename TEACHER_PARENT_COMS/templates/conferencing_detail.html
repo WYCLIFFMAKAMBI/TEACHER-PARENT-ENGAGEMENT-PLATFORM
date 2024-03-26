@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Conferencing Detail</title>
+    <link rel="stylesheet" href="{% static 'det.css' %}">
+    <style>
+        /* det.css */
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        form button[type="submit"] {
+            background-color: #dc3545;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form button[type="submit"]:hover {
+            background-color: #c82333;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ conferencing.name }}</h1>
+        <p><strong>Link:</strong> <a href="{{ conferencing.link }}">{{ conferencing.link }}</a></p>
+        <p><strong>Date:</strong> {{ conferencing.date }}</p>
+        <p><strong>Time:</strong> {{ conferencing.time }}</p>
+        <p><strong>Created:</strong> {{ conferencing.created }}</p>
+        <a href="{% url 'conferencing_update' conferencing.pk %}" class="action-link">Edit</a>
+        <form action="{% url 'conferencing_delete' conferencing.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+        </form>
+        <a href="{% url 'conferencing_list' %}" class="back-link">Back to List</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!-- studentprofile_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Profile Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .profile-container {
+            width: 50%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-image {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .profile-image img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 5px;
+        }
+        .profile-info {
+            margin-bottom: 20px;
+        }
+        .profile-info p {
+            margin: 5px 0;
+        }
+        .action-links {
+            text-align: center;
+        }
+        .action-links a {
+            margin-right: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .action-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Profile Detail</h1>
+    <div class="profile-container">
+        <div class="profile-image">
+            {% if studentprofile.image %}
+                <img src="{{ studentprofile.image.url }}" alt="Profile Image">
+            {% else %}
+                <!-- Placeholder or default image -->
+                <img src="#" alt="Profile Image">
+            {% endif %}
+        </div>
+        <div class="profile-info">
+            <p><strong>Student Name:</strong> {{ studentprofile.student_name }}</p>
+            <p><strong>Discipline:</strong> {{ studentprofile.discipline }}</p>
+            <p><strong>Actions:</strong> {{ studentprofile.actions }}</p>
+            <p><strong>Achievement:</strong> {{ studentprofile.achievement }}</p>
+        </div>
+        <div class="action-links">
+            {% if user.role == 'admin' %}
+                <a href="{% url 'profile_update' studentprofile.pk %}">Update</a>
+                <a href="{% url 'profile_delete' studentprofile.pk %}">Delete</a>
+            {% endif %}
+        </div>
+    </div>

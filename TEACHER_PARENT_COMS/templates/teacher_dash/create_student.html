@@ -1,0 +1,17 @@
+{% include 'teacher_dash/base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'form.css' %}">
+<div class="content">
+    <form method="post" class="student-form">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-field">
+            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+            {{ field }}
+        </div>
+        {% endfor %}
+        <button type="submit" class="submit-button">SUBMIT</button>
+    </form>
+</div>
+{% endblock %}

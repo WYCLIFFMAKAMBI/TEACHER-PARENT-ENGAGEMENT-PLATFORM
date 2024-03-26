@@ -1,0 +1,17 @@
+<!-- registration/teacher_register.html -->
+{% extends 'admindashboard/base.html' %}
+
+{% block title %}Teacher Registration{% endblock %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'admin.css' %}"> 
+    <h1>Teacher Registration Dashboard</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% csrf_token %}
+        {% for form in form %}
+        <br> {{ form.label }} :{{ form}} <br>
+        {% endfor %}
+        <button type="submit">Register</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'teacher_dash/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'admin.css' %}">
+    <form method="post">
+        {% csrf_token %}
+        {% for form in form %}
+        <br> {{ form.label }} :{{ form}} <br>
+        {% endfor %}
+        <button type="submit">create result</button>
+    </form>
+{% endblock%}

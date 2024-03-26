@@ -1,0 +1,32 @@
+{% extends 'parent_dash/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'table.css' %}">
+ <div class="content">
+  
+     <table class="table">
+      <h2>assignment List</h2>
+        <thead>
+        <tr>
+            <th>subject</th>
+            <th>title</th>
+            <th>content</th>
+            <th>Date</th>
+           
+        </tr>
+      </thead>
+      <tbody>
+        {% for assign in assignments %}
+          <tr>
+            <td>{{assign.subject}}</td>
+            <td>{{assign.title}}</td>
+            <th>{{assign.content|truncatewords:10}}</th>
+            <td>{{assign.date}}</td>
+            
+          
+          </tr>
+          {% endfor %}
+        </tbody>
+     </table>
+ </div>
+{% endblock%}

@@ -1,0 +1,38 @@
+
+{% extends 'teacher_dash/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'table.css' %}">
+ <div class="content">
+  {% if user.role == 'teacher' %}
+  <a href="{% url 'create_result' %}" class="btn btn-sm btn-primary">Add results</a>
+  {% endif %}
+   <h2>Attendance List</h2>
+
+     <table class="table">
+        <thead>
+        <tr>
+            <th>student name</th>
+            <th>subject</th>
+            <th>marks</th>
+            <th>grade</th>
+            <th>action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for res in results %}
+          <tr>
+            <td>{{res.student}}</td>
+            <td>{{res.subject}}</td>
+            <td>{{res.marks}}</td>
+            <td>{{res.grade}}</td>
+            <td>
+                <a href="{% url 'update_result' res.id %}" class="btn btn-primary">update</a>
+                <a href="{% url 'delete_result' res.id %}" class="btn btn-danger">delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+     </table>
+ </div>
+{% endblock%}
